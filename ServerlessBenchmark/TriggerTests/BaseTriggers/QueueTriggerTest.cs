@@ -73,7 +73,7 @@ namespace ServerlessBenchmark.TriggerTests.BaseTriggers
             };
 
             
-            this.TestRepository.AddTestResult(this.TestWithResults, progressResult);
+            //this.TestRepository.AddTestResult(this.TestWithResults, progressResult);
         }
 
         protected override string StorageType

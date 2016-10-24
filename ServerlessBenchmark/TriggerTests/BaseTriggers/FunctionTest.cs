@@ -27,7 +27,7 @@ namespace ServerlessBenchmark.TriggerTests.BaseTriggers
         protected abstract PerfResultProvider PerfmormanceResultProvider { get; }
         private bool onTestCoolDown = false;
         protected Test TestWithResults { get; set; }
-        protected ITestRepository TestRepository { get; set; }
+        //protected ITestRepository TestRepository { get; set; }
         protected int WarmUpTimeInMinutes { get; }
         public int Eps { get; } = 60;
         protected bool DuringWarmUp = false;
@@ -35,7 +35,7 @@ namespace ServerlessBenchmark.TriggerTests.BaseTriggers
         protected FunctionTest(string functionName, int eps, int warmUpTimeInMinutes)
         {
             FunctionName = functionName;
-            TestRepository = new TestRepository();
+            //TestRepository = new TestRepository();
             Eps = eps;
             WarmUpTimeInMinutes = warmUpTimeInMinutes;
         }
@@ -92,7 +92,7 @@ namespace ServerlessBenchmark.TriggerTests.BaseTriggers
                 Owner = System.Security.Principal.WindowsIdentity.GetCurrent().Name
             };
 
-            this.TestWithResults = this.TestRepository.AddTest(this.TestWithResults);
+            //this.TestWithResults = this.TestRepository.AddTest(this.TestWithResults);
             var sw = Stopwatch.StartNew();
             await loadProfile.ExecuteRateAsync(i => GenerateLoad(i));
             loadProfile.Dispose();
@@ -101,12 +101,12 @@ namespace ServerlessBenchmark.TriggerTests.BaseTriggers
             sw.Stop();
             var clientEndTime = DateTime.Now;
             this.TestWithResults.EndTime = clientEndTime.ToUniversalTime();
-            this.TestRepository.UpdateTest(this.TestWithResults, saveResults: false);
+            //this.TestRepository.UpdateTest(this.TestWithResults, saveResults: false);
             Logger.LogInfo("--END-- Elapsed time:      {0}", sw.Elapsed);
             await PreReportGeneration(startTime, clientEndTime);
             var perfResult = PerfmormanceResultProvider.GetPerfMetrics(FunctionName, startTime, clientEndTime, expectedExecutionCount: ExpectedExecutionCount);
             this.TestWithResults.Description = perfResult.ToString();
-            this.TestRepository.UpdateTest(this.TestWithResults, saveResults: true);
+            //this.TestRepository.UpdateTest(this.TestWithResults, saveResults: true);
             return perfResult;
         }
 

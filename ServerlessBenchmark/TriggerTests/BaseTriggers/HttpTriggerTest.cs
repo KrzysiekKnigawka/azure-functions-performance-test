@@ -207,7 +207,7 @@ namespace ServerlessBenchmark.TriggerTests.BaseTriggers
                 AverageLatency = _responseTimes.IsEmpty ? .0 : _responseTimes.Average()
             };
 
-            this.TestRepository.AddTestResult(this.TestWithResults, progressResult);
+            //this.TestRepository.AddTestResult(this.TestWithResults, progressResult);
             _totalRequestsWithTick = totalRequests;
             _totalFailedRequestsWithTick = totalFailedRequests;
             _totalSuccessRequestsWithTick = totalSuccessRequests;
