@@ -81,7 +81,7 @@ namespace ServerlessBenchmark.TriggerTests.BaseTriggers
             }
 
             Logger.LogInfo("--START-- Running load");
-            var startTime = DateTime.Now;
+            var startTime = DateTime.UtcNow;
 
             this.TestWithResults = new Test
             {

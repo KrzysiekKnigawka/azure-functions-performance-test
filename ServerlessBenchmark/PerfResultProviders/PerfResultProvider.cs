@@ -46,6 +46,8 @@ namespace ServerlessBenchmark.PerfResultProviders
         public virtual PerfTestResult GetPerfMetrics(string functionName, DateTime testStartTime, DateTime testEndTime,string inputTriggerName = null, string outputTriggerName = null, int expectedExecutionCount = 0)
         {
             var perfResults = new PerfTestResult();
+            perfResults.Add("TestStartTime", testStartTime.ToString("HH:mm:ss"));
+            perfResults.Add("TestEndTime", testEndTime.ToString("HH:mm:ss"));
             var perfCalculatingMethods = GetType().GetRuntimeMethods().Where(m => m.IsDefined(typeof (PerfMetric)));
             foreach (var method in perfCalculatingMethods)
             {
